@@ -10,7 +10,6 @@
 		4CD354132B225CA8003D8FC4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD354122B225CA8003D8FC4 /* AppDelegate.swift */; };
 		4CD354152B225CA8003D8FC4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD354142B225CA8003D8FC4 /* SceneDelegate.swift */; };
 		4CD354172B225CA8003D8FC4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD354162B225CA8003D8FC4 /* ViewController.swift */; };
-		4CD3541A2B225CA8003D8FC4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CD354182B225CA8003D8FC4 /* Main.storyboard */; };
 		4CD3541C2B225CA9003D8FC4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CD3541B2B225CA9003D8FC4 /* Assets.xcassets */; };
 		4CD3541F2B225CA9003D8FC4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CD3541D2B225CA9003D8FC4 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -20,7 +19,6 @@
 		4CD354122B225CA8003D8FC4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4CD354142B225CA8003D8FC4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		4CD354162B225CA8003D8FC4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		4CD354192B225CA8003D8FC4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4CD3541B2B225CA9003D8FC4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4CD3541E2B225CA9003D8FC4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4CD354202B225CA9003D8FC4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -59,7 +57,6 @@
 				4CD354122B225CA8003D8FC4 /* AppDelegate.swift */,
 				4CD354142B225CA8003D8FC4 /* SceneDelegate.swift */,
 				4CD354162B225CA8003D8FC4 /* ViewController.swift */,
-				4CD354182B225CA8003D8FC4 /* Main.storyboard */,
 				4CD3541B2B225CA9003D8FC4 /* Assets.xcassets */,
 				4CD3541D2B225CA9003D8FC4 /* LaunchScreen.storyboard */,
 				4CD354202B225CA9003D8FC4 /* Info.plist */,
@@ -127,7 +124,6 @@
 			files = (
 				4CD3541F2B225CA9003D8FC4 /* LaunchScreen.storyboard in Resources */,
 				4CD3541C2B225CA9003D8FC4 /* Assets.xcassets in Resources */,
-				4CD3541A2B225CA8003D8FC4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,14 +143,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		4CD354182B225CA8003D8FC4 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4CD354192B225CA8003D8FC4 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		4CD3541D2B225CA9003D8FC4 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -297,7 +285,6 @@
 				INFOPLIST_FILE = AppleMusicV2/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -305,7 +292,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = tech.CongLeSolutionX.AppleMusicV2.AppleMusicV2;
+				PRODUCT_BUNDLE_IDENTIFIER = tech.CongLeSolutionX.AppleMusicV2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -325,7 +312,6 @@
 				INFOPLIST_FILE = AppleMusicV2/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -333,7 +319,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = tech.CongLeSolutionX.AppleMusicV2.AppleMusicV2;
+				PRODUCT_BUNDLE_IDENTIFIER = tech.CongLeSolutionX.AppleMusicV2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
