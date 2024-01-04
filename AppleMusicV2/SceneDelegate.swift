@@ -15,7 +15,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
-        let initialVC = ViewController()
+        let initialVC = TrendingAlbumsViewController(viewModel: ListOfMusicResultsViewModel(repository: AppleMusicRepository(appleMusicService: AppleMusicService())))//ViewController()
+        
         let window = UIWindow(windowScene: windowScene)
         window.rootViewController = initialVC
         self.window = window
