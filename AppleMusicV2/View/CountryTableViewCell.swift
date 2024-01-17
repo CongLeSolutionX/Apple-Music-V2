@@ -12,12 +12,19 @@ class CountryTableViewCell: UITableViewCell {
     
     lazy var albumNameLabel: UILabel = {
         let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 16, weight: .bold) // Larger and bold for the album name
+        label.textColor = .black // Or any color appropriate for your design
+        label.numberOfLines = 0 // Allows for multi-line if needed
+        //label.lineBreakMode = .byWordWrapping // This ensures that words are not split across lines
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     lazy var artistNameLabel: UILabel = {
         let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 14, weight: .regular) // Slightly smaller and regular weight for the artist name
+        label.textColor = .darkGray // A more subdued color for the artist name
+        label.numberOfLines = 0 // Allows for multi-line if needed
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -35,7 +42,6 @@ class CountryTableViewCell: UITableViewCell {
         stackView.addArrangedSubview(albumNameLabel)
         stackView.addArrangedSubview(artistNameLabel)
         stackView.axis = .vertical
-        stackView.spacing = 8
         return stackView
     }()
     
