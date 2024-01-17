@@ -112,23 +112,10 @@ class AlbumTableViewCell: UITableViewCell {
         self.albumNameLabel.text = viewModel.albumName
         self.artistNameLabel.text = viewModel.artistName
         
-        // Check for a valid URL
-          if let url = URL(string: viewModel.artworkUrlLink) {
-              // Fetch image data from the URL
-              URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
-                  guard let self = self else { return }
-                  
-                  // Check for data and no errors
-                  if let data = data, error == nil {
-                      // Create image from data
-                      let image = UIImage(data: data)
-                      DispatchQueue.main.async {
-                          // Set image to imageView on the main thread
-                          self.artworkImageView.image = image
-                      }
-                  }
-              }.resume()
-          }
+        
+        ImageService.shared.fetchImage(from: viewModel.artworkUrlLink) { [weak self] image in
+            self?.artworkImageView.image = image
+        }
     }
     
     @objc private func didTapRightButton() {
