@@ -29,7 +29,7 @@ class AlbumTableViewCell: UITableViewCell {
         return label
     }()
     
-    lazy var myImageView: UIImageView = {
+    lazy var artworkImageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(systemName: "house")!)
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false // Enable Auto Layout
@@ -68,7 +68,7 @@ class AlbumTableViewCell: UITableViewCell {
     lazy var cellStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.addArrangedSubview(myImageView)
+        stackView.addArrangedSubview(artworkImageView)
         stackView.addArrangedSubview(labelsStackView)
         stackView.addArrangedSubview(rightButton)
         stackView.axis = .horizontal
@@ -92,14 +92,14 @@ class AlbumTableViewCell: UITableViewCell {
         contentView.addSubview(cellStackView)
         
         NSLayoutConstraint.activate([
-            cellStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            cellStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
             cellStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             cellStackView.topAnchor.constraint(equalTo: contentView.topAnchor),
             cellStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             
             // For contentHuggingPriority to work, make sure that myImageView and rightButton
             // have intrinsic content sizes or explicit width constraints as 50
-            myImageView.widthAnchor.constraint(equalToConstant: 50),
+            artworkImageView.widthAnchor.constraint(equalToConstant: 50),
             rightButton.widthAnchor.constraint(equalToConstant: 50)
         ])
     }
@@ -111,6 +111,24 @@ class AlbumTableViewCell: UITableViewCell {
     func configure(with viewModel: AlbumViewModel) {
         self.albumNameLabel.text = viewModel.albumName
         self.artistNameLabel.text = viewModel.artistName
+        
+        // Check for a valid URL
+          if let url = URL(string: viewModel.artworkUrlLink) {
+              // Fetch image data from the URL
+              URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+                  guard let self = self else { return }
+                  
+                  // Check for data and no errors
+                  if let data = data, error == nil {
+                      // Create image from data
+                      let image = UIImage(data: data)
+                      DispatchQueue.main.async {
+                          // Set image to imageView on the main thread
+                          self.artworkImageView.image = image
+                      }
+                  }
+              }.resume()
+          }
     }
     
     @objc private func didTapRightButton() {
