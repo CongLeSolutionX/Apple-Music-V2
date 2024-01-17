@@ -111,10 +111,15 @@ class AlbumTableViewCell: UITableViewCell {
     func configure(with viewModel: AlbumViewModel) {
         self.albumNameLabel.text = viewModel.albumName
         self.artistNameLabel.text = viewModel.artistName
-        
-        
-        NetworkService.shared.fetchImage(from: viewModel.artworkUrlLink) { [weak self] image in
-            self?.artworkImageView.image = image
+ 
+        NetworkService.shared.fetchImage(from: viewModel.artworkUrlLink) { [weak self ] (result: Result<UIImage, NetworkError>) in
+            switch result {
+            case .success(let image):
+                self?.artworkImageView.image = image
+            case .failure(let networkError):
+                // TODO: Need to present this error message to the user
+                print(networkError)
+            }
         }
     }
     
