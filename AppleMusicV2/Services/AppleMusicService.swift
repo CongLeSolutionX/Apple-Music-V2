@@ -13,7 +13,7 @@ class AppleMusicService {
     func fetchAppleMusic(completion: @escaping (AppleMusic?, Error?) -> Void) {
         // Create a URL from the given string.
         guard let url =  AppleITuneAPI.getAlbumURL() else {
-            completion(nil, URLError(.badURL))
+            completion(nil, URLError(URLError.badURL))
             return
         }
         
@@ -27,7 +27,7 @@ class AppleMusicService {
             
             // Check if response data exists.
             guard let data = data else {
-                completion(nil, URLError(.badServerResponse))
+                completion(nil, URLError(URLError.badServerResponse))
                 return
             }
             
@@ -66,7 +66,7 @@ class AppleMusicService {
         if let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []),
            let jsonData = try? JSONSerialization.data(withJSONObject: jsonObject, options: [.prettyPrinted]),
            let prettyPrintedString = String(data: jsonData, encoding: .utf8) {
-            print("Fetched JSON string:\n\(prettyPrintedString)")
+            print("Fetched JSON string:\n\(prettyPrintedString)") //TODO: We need to use log mechanism instead of using print statement
         }
     }
 }
