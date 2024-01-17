@@ -23,4 +23,8 @@ struct AlbumViewModel {
     var albumName: String {
         return self.appleMusicResult.name
     }
+    
+    var artwork: String {
+        return self.appleMusicResult.artworkUrl100
+    }
 }

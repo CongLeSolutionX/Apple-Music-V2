@@ -1,5 +1,5 @@
 //
-//  ListOfContriesViewModel.swift
+//  ListOfMusicResultsViewModel.swift
 //  AppleMusicV2
 //
 //  Created by CONG LE on 12/7/23.
@@ -7,13 +7,13 @@
 
 import Foundation
 
-class ListOfMusicResultsViewModel {
+class ListOfAlbumViewModels {
     // This service should ideally be injected rather than instantiated directly,
     // to facilitate testing and to conform to the dependency inversion principle.
     private let repository: AppleMusicRepository
     
     // An array to hold the view models for countries, to be used by the table view
-    private(set) var albumViewModel: [AlbumViewModel] = []
+    private(set) var albumViewModels: [AlbumViewModel] = []
     
     
     var onError: ((Error) -> Void)?
@@ -25,10 +25,10 @@ class ListOfMusicResultsViewModel {
     
     // Fetch music results from repository
     func fetchMusicResults() {
-        repository.fetchAppleMusicData { [weak self] musicResults, error in
+        repository.fetchAppleMusic { [weak self] albumViewModels, error in
             DispatchQueue.main.async {
-                if let viewModels = musicResults {
-                    self?.albumViewModel = viewModels
+                if let viewModels = albumViewModels {
+                    self?.albumViewModels = viewModels
                     self?.onMusicResultFetched?()
                 } else if let error = error {
                     self?.onError?(error)

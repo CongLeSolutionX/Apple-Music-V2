@@ -10,7 +10,7 @@ import Foundation
 class AppleMusicService {
 
     // URLSession is used to create a network request.
-    func fetchAppleMusic(completion: @escaping (AppleMusicData?, Error?) -> Void) {
+    func fetchAppleMusic(completion: @escaping (AppleMusic?, Error?) -> Void) {
         // Create a URL from the given string.
         guard let url =  AppleITuneAPI.getAlbumURL() else {
             completion(nil, URLError(.badURL))
@@ -31,7 +31,6 @@ class AppleMusicService {
                 return
             }
 
-           
             do {
                 // print out the json data structure we received
                 if let jsonString = String(data: data, encoding: .utf8) {
@@ -39,7 +38,7 @@ class AppleMusicService {
                 }
                 
                 // Decode the received data
-                let fetchedData = try JSONDecoder().decode(AppleMusicData.self, from: data)
+                let fetchedData = try JSONDecoder().decode(AppleMusic.self, from: data)
                 // Call completion handler with the decoded country data on success.
                 completion(fetchedData, nil)
             } catch {

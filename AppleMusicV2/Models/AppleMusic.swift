@@ -1,5 +1,5 @@
 //
-//  AppleMusicAlbumV2.swift
+//  AppleMusic.swift
 //  AppleMusicV2
 //
 //  Created by CONG LE on 12/7/23.
@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - AppleMusicAlbumV2
-struct AppleMusicData: Codable {
+struct AppleMusic: Codable {
     let feed: Feed
 }
 

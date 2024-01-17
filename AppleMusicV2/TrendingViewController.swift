@@ -9,7 +9,7 @@ import UIKit
 import Foundation
 
 class TrendingAlbumsViewController: UITableViewController {
-    var viewModel: ListOfMusicResultsViewModel
+    var viewModel: ListOfAlbumViewModels
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +19,7 @@ class TrendingAlbumsViewController: UITableViewController {
         
     }
     
-    init(viewModel: ListOfMusicResultsViewModel) {
+    init(viewModel: ListOfAlbumViewModels) {
         self.viewModel = viewModel
         super.init(style: .plain) // ensure calling designated initializer of the superclass UITableViewController
     }
@@ -58,7 +58,7 @@ class TrendingAlbumsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.albumViewModel.count
+        return viewModel.albumViewModels.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -72,7 +72,7 @@ class TrendingAlbumsViewController: UITableViewController {
             return UITableViewCell() // use default UITableViewCell instead
         }
         // Configure the cell using viewModel
-        let countryViewModel = viewModel.albumViewModel[indexPath.row]
+        let countryViewModel = viewModel.albumViewModels[indexPath.row]
         countryCell.configure(with: countryViewModel)
         return countryCell
     }
