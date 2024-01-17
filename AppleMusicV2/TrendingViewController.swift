@@ -33,7 +33,7 @@ class TrendingAlbumsViewController: UITableViewController {
         self.view.backgroundColor = .red
         self.title = "List of Countries"
         self.navigationItem.title = "List of Countries"
-        self.tableView.register(CountryTableViewCell.self, forCellReuseIdentifier: CountryTableViewCell.reuseIdentifier)
+        self.tableView.register(AlbumTableViewCell.self, forCellReuseIdentifier: AlbumTableViewCell.reuseIdentifier)
     }
     
     // MARK: - ViewModel Setup
@@ -64,9 +64,9 @@ class TrendingAlbumsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Dequeue Reusable Cell
         guard let countryCell = tableView.dequeueReusableCell(
-            withIdentifier: CountryTableViewCell.reuseIdentifier,
+            withIdentifier: AlbumTableViewCell.reuseIdentifier,
             for: indexPath
-        ) as? CountryTableViewCell else {
+        ) as? AlbumTableViewCell else {
             //TODO: Handle the error by displaying an alert or updating the UI as necessary
             print("Could not dequeue reusable CountryTableViewCell")
             return UITableViewCell() // use default UITableViewCell instead
