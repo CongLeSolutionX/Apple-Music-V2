@@ -58,7 +58,7 @@ class TrendingAlbumsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.musicViewModel.count
+        return viewModel.albumViewModel.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -72,7 +72,7 @@ class TrendingAlbumsViewController: UITableViewController {
             return UITableViewCell() // use default UITableViewCell instead
         }
         // Configure the cell using viewModel
-        let countryViewModel = viewModel.musicViewModel[indexPath.row]
+        let countryViewModel = viewModel.albumViewModel[indexPath.row]
         countryCell.configure(with: countryViewModel)
         return countryCell
     }

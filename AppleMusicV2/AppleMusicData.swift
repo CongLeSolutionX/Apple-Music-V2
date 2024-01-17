@@ -43,8 +43,8 @@ struct Link: Codable {
 struct Album: Codable {
     let artistName, id, name, releaseDate: String
     let kind: Kind
-    let artistID: String
-    let artistURL: String
+    let artistID: String?
+    let artistURL: String?
     let contentAdvisoryRating: String?
     let artworkUrl100: String
     let genres: [Genre]

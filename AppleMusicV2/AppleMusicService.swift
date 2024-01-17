@@ -31,13 +31,32 @@ class AppleMusicService {
                 return
             }
 
-            // Attempt to decode the data into an array of Country objects.
+           
             do {
+                // print out the json data structure we received
+                if let jsonString = String(data: data, encoding: .utf8) {
+                    print("Fetched JSON string: \(jsonString)")
+                }
+                
+                // Decode the received data
                 let fetchedData = try JSONDecoder().decode(AppleMusicData.self, from: data)
                 // Call completion handler with the decoded country data on success.
                 completion(fetchedData, nil)
             } catch {
                 // Call completion handler with the error on failure.
+                print("Decoding error: \(error)")
+                if let decodingError = error as? DecodingError {
+                    switch decodingError {
+                    case .keyNotFound(let key, let context):
+                        print("\(key.stringValue) was not found, \(context.debugDescription)")
+                    case .typeMismatch(_, let context):
+                        print("\(context.debugDescription)")
+                    case .valueNotFound(_, let context):
+                        print("\(context.debugDescription)")
+                    default:
+                        print("\(decodingError.localizedDescription)")
+                    }
+                }
                 completion(nil, error)
             }
         }
