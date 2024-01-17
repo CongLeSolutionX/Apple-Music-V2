@@ -113,7 +113,7 @@ class AlbumTableViewCell: UITableViewCell {
         self.artistNameLabel.text = viewModel.artistName
         
         
-        ImageService.shared.fetchImage(from: viewModel.artworkUrlLink) { [weak self] image in
+        NetworkService.shared.fetchImage(from: viewModel.artworkUrlLink) { [weak self] image in
             self?.artworkImageView.image = image
         }
     }

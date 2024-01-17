@@ -7,25 +7,45 @@
 
 import UIKit
 
-class ImageService {
-    static let shared = ImageService()
+class NetworkService {
+    static let shared = NetworkService()
 
-    func fetchImage(from urlString: String, completion: @escaping (UIImage?) -> Void) {
+    func fetchData(from urlString: String, completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
         guard let url = URL(string: urlString) else {
-            completion(nil)
+            completion(nil, nil, URLError(.badURL))
             return
         }
-        // Fetch image data from the URL
+
         URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let data = data, error == nil,
-                  let image = UIImage(data: data) else {
+            DispatchQueue.main.async {
+                completion(data, response, error)
+            }
+        }.resume()
+    }
+    
+    func fetchImage(from urlString: String, completion: @escaping (UIImage?) -> Void) {
+        fetchData(from: urlString) { data, _, _ in
+            guard let data = data, let image = UIImage(data: data) else {
                 completion(nil)
                 return
             }
-
-            DispatchQueue.main.async {
-                completion(image)
+            completion(image)
+        }
+    }
+    
+    func fetchDecodable<T: Decodable>(from urlString: String, completion: @escaping (T?, Error?) -> Void) {
+        fetchData(from: urlString) { data, _, error in
+            guard let data = data else {
+                completion(nil, error)
+                return
             }
-        }.resume()
+            
+            do {
+                let decodedObject = try JSONDecoder().decode(T.self, from: data)
+                completion(decodedObject, nil)
+            } catch {
+                completion(nil, error)
+            }
+        }
     }
 }
