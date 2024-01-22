@@ -13,7 +13,7 @@ class AlbumDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupUI()
-        configureViewsWithViewModel()
+        self.configureViewsWithViewModel()
     }
     
     private func setupUI(){
@@ -31,7 +31,7 @@ class AlbumDetailViewController: UIViewController {
     
     lazy var artworkUrlLink: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16, weight: .bold) // Larger and bold for the album name
+        label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         label.textColor = .black
         label.numberOfLines = 0  // Allows for multi-line if needed
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -40,7 +40,7 @@ class AlbumDetailViewController: UIViewController {
     
     lazy var albumNameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16, weight: .bold) // Larger and bold for the album name
+        label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         label.textColor = .black
         label.numberOfLines = 0 // Allows for multi-line if needed
         label.lineBreakMode = .byWordWrapping // This ensures that words are not split across lines
@@ -64,6 +64,29 @@ class AlbumDetailViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    lazy var albumKind: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        label.textColor = .darkGray
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    lazy var         contentAdvisoryRating: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        label.textColor = .darkGray
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    lazy var albumSampleURLLinkString: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        label.textColor = .darkGray
+        label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
     
     lazy var labelsStackView: UIStackView = {
         let stackView = UIStackView()
@@ -71,8 +94,10 @@ class AlbumDetailViewController: UIViewController {
         stackView.addArrangedSubview(artworkUrlLink)
         stackView.addArrangedSubview(albumNameLabel)
         stackView.addArrangedSubview(artistNameLabel)
+        stackView.addArrangedSubview(albumKind)
+        stackView.addArrangedSubview(contentAdvisoryRating)
         stackView.addArrangedSubview(releaseDate)
-        
+        stackView.addArrangedSubview(albumSampleURLLinkString)
         stackView.spacing = 8
         stackView.axis = .vertical
         return stackView
@@ -84,6 +109,9 @@ class AlbumDetailViewController: UIViewController {
         albumNameLabel.text = viewModel.albumName
         artistNameLabel.text = viewModel.artistName
         artworkUrlLink.text = viewModel.artworkUrlLink
+        albumKind.text = viewModel.albumKind
+        contentAdvisoryRating.text = viewModel.contentAdvisoryRating
         releaseDate.text = viewModel.releaseDate
+        albumSampleURLLinkString.text = viewModel.urlLinkString
     }
 }
