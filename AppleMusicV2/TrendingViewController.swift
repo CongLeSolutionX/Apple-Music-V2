@@ -84,9 +84,18 @@ class TrendingAlbumsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let viewModel = viewModels.albumViewModels[indexPath.row]
+        let album = viewModels.albumViewModels[indexPath.row]
+        let viewModel = AlbumDetailViewModel(
+            artworkUrlLink: album.artworkUrlLink,
+            albumName: album.albumName,
+            artistName: album.artistName,
+            albumKind: album.albumKind,
+            contentAdvisoryRating: album.contentAdvisoryRating,
+            releaseDate: album.releaseDate,
+            urlLinkString: album.urlLinkString
+        )
         let detailVC = AlbumDetailViewController()
-        detailVC.albumViewModel = viewModel
+        detailVC.albumDetailViewModel = viewModel
         self.navigationController?.pushViewController(detailVC, animated: true)
     }
     
