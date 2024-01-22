@@ -6,14 +6,42 @@
 //
 
 import UIKit
+import AVFoundation
 
 class AlbumDetailViewController: UIViewController {
     var albumDetailViewModel: AlbumDetailViewModel?
+    var player: AVPlayer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupUI()
         self.configureViewsWithViewModel()
+        
+        // Set up the audio session for playback
+        let audioSession = AVAudioSession.sharedInstance()
+        do {
+            try audioSession.setCategory(.playback, mode: .default)
+            try audioSession.setActive(true)
+        } catch {
+            print("Failed to set audio session category. Error: \(error)")
+        }
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        player?.play()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        player?.pause()
+    }
+    
+    // Remember to remove observer when deinit
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+        player?.currentItem?.removeObserver(self, forKeyPath: "status")
     }
     
     private func setupUI(){
@@ -144,6 +172,37 @@ class AlbumDetailViewController: UIViewController {
         contentAdvisoryRating.text = viewModel.contentAdvisoryRating
         releaseDate.text = viewModel.releaseDate
         
-        albumSampleURLLinkString.text = viewModel.urlLinkString
+        // albumSampleURLLinkString.text = viewModel.urlLinkString // Is this link the song link
+        
+        let urlString = viewModel.urlLinkString
+        if let url = URL(string: urlString) {
+            let playerItem = AVPlayerItem(url: url)
+            
+            // Add observer
+            NotificationCenter.default.addObserver(self, selector: #selector(playerItemDidReachEnd(notification:)), name: .AVPlayerItemDidPlayToEndTime, object: playerItem)
+            
+            player = AVPlayer(playerItem: playerItem)
+            
+            // Add observer for errors
+            playerItem.addObserver(self, forKeyPath: "status", options: [.old, .new], context: nil)
+        }
+    }
+    
+    
+    // Observer response
+    @objc func playerItemDidReachEnd(notification: Notification) {
+        // Playback finished
+        print("Playback finished.")
+    }
+    
+    // KVO for player errors
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "status" {
+            if let playerItem = object as? AVPlayerItem {
+                if playerItem.status == .failed {
+                    print("Player item has failed with error: \(String(describing: playerItem.error?.localizedDescription))")
+                }
+            }
+        }
     }
 }
