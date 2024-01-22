@@ -15,7 +15,7 @@ class AppleMusicRepository {
         self.appleMusicService = appleMusicService
     }
     
-    func fetchAppleMusic(completion: @escaping ([AlbumViewModel]?, Error?) -> Void) {
+    func fetchAppleMusic(completion: @escaping ([AlbumViewModel]?, NetworkError?) -> Void) {
         // First, attempt to use the cached data
         if let cached = cachedAlbums {
             completion(cached, nil)

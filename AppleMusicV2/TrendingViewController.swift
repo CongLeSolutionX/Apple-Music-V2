@@ -46,10 +46,15 @@ class TrendingAlbumsViewController: UITableViewController {
         
         viewModel.onError = { [weak self] error in
             DispatchQueue.main.async {
-                print("Error fetching music: \(error.localizedDescription)")
-                // TODO: Handle the error by displaying an alert or updating the UI as necessary
+                self?.showErrorAlert(error: error)
             }
         }
+    }
+    
+    func showErrorAlert(error: NetworkError) {
+        let alert = UIAlertController(title: "Network Error", message: "\(error.localizedDescription)", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        self.present(alert, animated: true)
     }
     
     // MARK: - Table view data source

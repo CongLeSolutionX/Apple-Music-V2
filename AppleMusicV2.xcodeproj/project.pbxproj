@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4C4697BE2B57ECA900E05F4D /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4697BD2B57ECA900E05F4D /* ImageService.swift */; };
+		4C4697BE2B57ECA900E05F4D /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4697BD2B57ECA900E05F4D /* NetworkService.swift */; };
 		4CB65D702B474CAF00303BAE /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB65D6F2B474CAF00303BAE /* FeedViewModel.swift */; };
 		4CD354132B225CA8003D8FC4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD354122B225CA8003D8FC4 /* AppDelegate.swift */; };
 		4CD354152B225CA8003D8FC4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD354142B225CA8003D8FC4 /* SceneDelegate.swift */; };
@@ -24,7 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4C4697BD2B57ECA900E05F4D /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
+		4C4697BD2B57ECA900E05F4D /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		4CB65D6F2B474CAF00303BAE /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
 		4CD3540F2B225CA8003D8FC4 /* AppleMusicV2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppleMusicV2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CD354122B225CA8003D8FC4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -83,7 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				4CE6F8D82B2264C9001B4078 /* AppleMusicAPI.swift */,
-				4C4697BD2B57ECA900E05F4D /* ImageService.swift */,
+				4C4697BD2B57ECA900E05F4D /* NetworkService.swift */,
 				4CE6F8E82B22679E001B4078 /* AppleMusicService.swift */,
 			);
 			path = Services;
@@ -198,7 +198,7 @@
 				4CD354132B225CA8003D8FC4 /* AppDelegate.swift in Sources */,
 				4CE6F8E52B226713001B4078 /* AlbumViewModel.swift in Sources */,
 				4CD354152B225CA8003D8FC4 /* SceneDelegate.swift in Sources */,
-				4C4697BE2B57ECA900E05F4D /* ImageService.swift in Sources */,
+				4C4697BE2B57ECA900E05F4D /* NetworkService.swift in Sources */,
 				4CE6F8E32B2266EE001B4078 /* AlbumTableViewCell.swift in Sources */,
 				4CE6F8D72B226441001B4078 /* AppleMusic.swift in Sources */,
 				4CE6F8E92B22679E001B4078 /* AppleMusicService.swift in Sources */,

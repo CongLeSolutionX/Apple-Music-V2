@@ -16,7 +16,7 @@ class ListOfAlbumViewModels {
     private(set) var albumViewModels: [AlbumViewModel] = []
     
     
-    var onError: ((Error) -> Void)?
+    var onError: ((NetworkError) -> Void)?
     var onMusicResultFetched: (() -> Void)?
     
     init(repository: AppleMusicRepository) {

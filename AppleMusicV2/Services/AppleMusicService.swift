@@ -7,11 +7,11 @@
 
 import Foundation
 
-class AppleMusicService {
+class AppleMusicService: ErrorLogging {
     
-    func fetchAppleMusic(completion: @escaping (AppleMusic?, Error?) -> Void) {
+    func fetchAppleMusic(completion: @escaping (AppleMusic?, NetworkError?) -> Void) {
         guard let urlLink = AppleITuneAPI.getAlbumURL() else {
-            completion(nil, URLError(.badURL))
+            completion(nil, NetworkError.badURL)
             return
         }
         
@@ -22,26 +22,15 @@ class AppleMusicService {
                 
             case .success(let fetchedData):
                 // TODO: create a log mechanism instead of using print statement
-                //print("Fetched data: \(fetchedData)")
                 self?.prettyPrintJson(fetchedData)
                 completion(fetchedData, nil)
             case .failure(let error):
-                // TODO: Handle the error by present it to the user
-                switch error {
-                case .badURL:
-                    print("Bad URL error")
-                case .requestFailed(let statusCode):
-                    print("Request failed with status code: \(statusCode)")
-                case .noData:
-                    print("No data returned from server")
-                case .dataDecodingFailed(let decodingError):
-                    print("Data decoding failed: \(decodingError)")
-                case .other(let otherError):
-                    print("Other error occurred: \(otherError)")
-                }
+                self?.logError(error)
+                completion(nil, error)
             }
         }
     }
+    
     private func prettyPrintJson<T: Codable>(_ data: T) {
         do {
             let jsonData = try JSONEncoder().encode(data)
@@ -54,4 +43,5 @@ class AppleMusicService {
             print("Error pretty printing JSON: \(error)")
         }
     }
+
 }
