@@ -28,11 +28,13 @@ class AlbumDetailViewController: UIViewController {
             artworkImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             artworkImageView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             artworkImageView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            
             labelsStackView.topAnchor.constraint(equalTo: artworkImageView.safeAreaLayoutGuide.bottomAnchor, constant: 8),
+            
+            artworkImageView.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.5),
+            
             labelsStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 8),
             labelsStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-           
+            
         ])
     }
     
@@ -49,6 +51,7 @@ class AlbumDetailViewController: UIViewController {
     lazy var artworkImageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(systemName: "house")!)
         imageView.contentMode = .scaleAspectFit
+        imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false // Enable Auto Layout
         return imageView
     }()
@@ -113,7 +116,7 @@ class AlbumDetailViewController: UIViewController {
         stackView.addArrangedSubview(albumKind)
         stackView.addArrangedSubview(contentAdvisoryRating)
         stackView.addArrangedSubview(releaseDate)
-         
+        
         stackView.addArrangedSubview(albumSampleURLLinkString) // play the sample album audio
         stackView.spacing = 8
         stackView.axis = .vertical
