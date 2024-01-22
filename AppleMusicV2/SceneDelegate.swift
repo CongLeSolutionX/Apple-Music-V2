@@ -16,7 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         let initialVC = TrendingAlbumsViewController(
-            viewModel: ListOfAlbumViewModels(
+            viewModels: ListOfAlbumViewModels(
                 repository: AppleMusicRepository(
                     appleMusicService: AppleMusicService()
                 )
@@ -24,7 +24,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         )
         
         let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = initialVC
+        let navigationController = UINavigationController(rootViewController: initialVC)
+       
+        window.rootViewController = navigationController
+        
         self.window = window
         self.window?.makeKeyAndVisible()
     }

@@ -9,18 +9,18 @@ import UIKit
 import Foundation
 
 class TrendingAlbumsViewController: UITableViewController {
-    var viewModel: ListOfAlbumViewModels
+    var viewModels: ListOfAlbumViewModels
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupUI()
         self.setupViewModel()
-        self.viewModel.fetchMusicResults()
+        self.viewModels.fetchMusicResults()
         
     }
     
-    init(viewModel: ListOfAlbumViewModels) {
-        self.viewModel = viewModel
+    init(viewModels: ListOfAlbumViewModels) {
+        self.viewModels = viewModels
         super.init(style: .plain) // ensure calling designated initializer of the superclass UITableViewController
     }
     
@@ -38,20 +38,20 @@ class TrendingAlbumsViewController: UITableViewController {
     
     // MARK: - ViewModel Setup
     private func setupViewModel() {
-        viewModel.onMusicResultFetched = { [weak self] in
+        viewModels.onMusicResultFetched = { [weak self] in
             DispatchQueue.main.async {
                 self?.tableView.reloadData()
             }
         }
         
-        viewModel.onError = { [weak self] error in
+        viewModels.onError = { [weak self] error in
             DispatchQueue.main.async {
                 self?.showErrorAlert(error: error)
             }
         }
     }
     
-    func showErrorAlert(error: NetworkError) {
+    private func showErrorAlert(error: NetworkError) {
         let alert = UIAlertController(title: "Network Error", message: "\(error.localizedDescription)", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         self.present(alert, animated: true)
@@ -63,7 +63,7 @@ class TrendingAlbumsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.albumViewModels.count
+        return viewModels.albumViewModels.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -77,9 +77,17 @@ class TrendingAlbumsViewController: UITableViewController {
             return UITableViewCell() // use default UITableViewCell instead
         }
         // Configure the cell using viewModel
-        let countryViewModel = viewModel.albumViewModels[indexPath.row]
+        let countryViewModel = viewModels.albumViewModels[indexPath.row]
         countryCell.configure(with: countryViewModel)
         return countryCell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let viewModel = viewModels.albumViewModels[indexPath.row]
+        let detailVC = AlbumDetailViewController()
+        detailVC.albumViewModel = viewModel
+        self.navigationController?.pushViewController(detailVC, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
